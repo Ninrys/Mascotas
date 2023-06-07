@@ -48,15 +48,25 @@ Button botonAgregar;
 
                 Intent intent = new Intent(this, AgregarMascotas.class);
                 startActivity(intent);
-                finish();
+                // finish();
                 return true;
             case R.id.addVacuna:
 
                 Intent intent1 = new Intent(this, AgregarVacunas.class);
+                startActivity(intent1);
 
                 return true;
             case R.id.addVisita:
+                Intent intent3 = new Intent(this, AgregarVisitaVet.class);
+                startActivity(intent3);
+
                 return true;
+
+            case R.id.logOut:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(this, Login.class);
+                startActivity(intent2);
+                finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -102,7 +112,8 @@ Button botonAgregar;
                     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-                 db.collection("usuarios").document(uid).collection("mascotas").add(docData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                 db.collection("usuarios").document(uid).collection("mascotas")
+                         .add(docData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Toast.makeText(AgregarMascotas.this, "Guardado correctamente", Toast.LENGTH_SHORT);

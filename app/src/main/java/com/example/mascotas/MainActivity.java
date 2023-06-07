@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.addVisita:
+                Intent intent3 = new Intent(this, AgregarVisitaVet.class);
+                startActivity(intent3);
+
                 return true;
 
             case R.id.logOut:

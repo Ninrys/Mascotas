@@ -12,25 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -38,21 +27,17 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-public class AgregarVacunas extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
+public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    Spinner mascotuser;
-    EditText nombreVac, fechaVac;
-    Button btnAddVac;
     CollectionReference spinnerRef;
-    ArrayList<String> spinnerList, idList;
+    EditText nombreVet, sucursal, fechaVisita, observacion;
+    Spinner spnNombreMascota, spnTipoAtencion;
+    ArrayList spinnerList, idList;
     ArrayAdapter<String> adapter;
 
+
+    //menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -92,25 +77,25 @@ public class AgregarVacunas extends AppCompatActivity implements DatePickerDialo
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_agregar_vacunas);
-        mascotuser = findViewById(R.id.spinnerMascot);
-        nombreVac = findViewById(R.id.nombreVacuna);
-        btnAddVac = findViewById(R.id.btn_agregarVacuna);
-        fechaVac = findViewById(R.id.fechaVacuna);
+        setContentView(R.layout.activity_agregar_visita_vet);
+        nombreVet = findViewById(R.id.nombreVeterinario);
+        sucursal = findViewById(R.id.nombreConsulta);
+        fechaVisita = findViewById(R.id.fechaVet);
+        observacion = findViewById(R.id.vetObservacion);
+        spnNombreMascota = findViewById(R.id.spinnerMascotvET);
+        spnTipoAtencion = findViewById(R.id.spinnerAtencion);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         spinnerRef = db.collection("usuarios").document(uid).collection("mascotas");
         idList = new ArrayList<>();
         spinnerList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(AgregarVacunas.this, android.R.layout.simple_spinner_item, spinnerList);
+        adapter = new ArrayAdapter<String>(AgregarVisitaVet.this, android.R.layout.simple_spinner_item, spinnerList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mascotuser.setAdapter(adapter);
-
+        spnNombreMascota.setAdapter(adapter);
+        //rellenar
         spinnerRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -120,16 +105,15 @@ public class AgregarVacunas extends AppCompatActivity implements DatePickerDialo
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String nombremascota = document.getString("nombre");
                         String iudmascota = document.getId();
-                       spinnerList.add(nombremascota);
-                       idList.add(iudmascota);
+                        spinnerList.add(nombremascota);
+                        idList.add(iudmascota);
                     }
                     adapter.notifyDataSetChanged();
                 }
             }
         });
 
-
-        fechaVac.setOnClickListener(new View.OnClickListener() {
+        fechaVisita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment datepicker = new DatePickerFragment();
@@ -137,44 +121,6 @@ public class AgregarVacunas extends AppCompatActivity implements DatePickerDialo
             }
         });
 
-        //AGREGAR VACUNAS
-        btnAddVac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String fecha = fechaVac.getText().toString();
-                String mascota= mascotuser.getSelectedItem().toString();
-                String idMascota = idList.get(mascotuser.getSelectedItemPosition());
-                String nombreVacuna= nombreVac.getText().toString();
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                if(fecha.isEmpty()||mascota.isEmpty()|| nombreVacuna.isEmpty()){
-                    Toast.makeText(AgregarVacunas.this, "Por favor, Rellene todos los campos", Toast.LENGTH_LONG).show();
-                }else {
-                    Map<String, Object> docData = new HashMap<>();
-                    docData.put("nombreVacuna", nombreVacuna);
-                    docData.put("fechaInoculacion", fecha);
-                    db.collection("usuarios").document(uid).collection("mascotas").document(idMascota)
-                            .collection("Vacunas").add(docData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(AgregarVacunas.this, "Agregado correctamente", Toast.LENGTH_SHORT).show();
-                                    nombreVac.getText().clear();
-                                    fechaVac.getText().clear();
-
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(AgregarVacunas.this, "Error al registrar", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-
-                }
-
-            }
-        });
 
 
     }
@@ -187,7 +133,7 @@ public class AgregarVacunas extends AppCompatActivity implements DatePickerDialo
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, day);
         String fecha= DateFormat.getDateInstance().format(c.getTime());
-        fechaVac.setText(fecha);
+        fechaVisita.setText(fecha);
 
     }
 }

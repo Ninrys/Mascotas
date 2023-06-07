@@ -20,12 +20,25 @@
     <string name="Agregar_Vacunas">Agrega Vacunas</string>
     <string name="nombre_vacuna">Nombre de la Vacuna</string>
     <string name="Fecha_vacunacion">Fecha de Vacunacion</string>
+    <string name="btnaddVacuna">Agregar Vacuna</string>
+    <string name="nombre_vet">Nombre del Veterinario</string>
+    <string name="nombre_consulta">Nombre Consulta Vet</string>
+    <string name="spn_tipoAtencion">Tipo de Atención</string>
+    <string name="Observaciones">Observaciones</string>
+    <string name="Fecha_visita">Fecha Visita Veterinaria</string>
+    <string name="Agregar_visita">Agregar Visita Veterinaria</string>
+    <string name="btn_agregarvet">Agregar Visita</string>
     <string-array name="especies_array">
         <item>Perro</item>
         <item>Gato</item>
         <item>Pájaro</item>
         <item>Otros</item>
-
+    </string-array>
+    <string-array name="atencion_array">
+        <item>Control</item>
+        <item>Urgencia</item>
+        <item>Enfermedad</item>
+        <item>Otros</item>
     </string-array>
 
 </resources>

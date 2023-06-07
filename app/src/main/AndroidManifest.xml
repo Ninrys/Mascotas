@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Mascotas"
         tools:targetApi="31">
         <activity
+            android:name=".AgregarVisitaVet"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".AgregarVacunas"
             android:exported="false">
             <meta-data

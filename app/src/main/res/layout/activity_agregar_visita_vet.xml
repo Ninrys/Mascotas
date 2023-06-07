@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarVisitaVet">
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Agregar_visita"
+            android:textSize="30dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_marginTop="40dp"
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreMascota" />
+
+        <Spinner
+            android:id="@+id/spinnerMascotvET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"/>
+        <EditText
+            android:id="@+id/fechaVet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:focusable="false"
+            android:clickable="true"
+            android:maxLines="1"
+            android:hint="@string/Fecha_visita"
+            android:inputType="date" />
+        <EditText
+            android:id="@+id/nombreVeterinario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+            android:inputType="textPersonName"
+            android:hint="@string/nombre_vet" />
+        <EditText
+            android:id="@+id/nombreConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+            android:inputType="textPersonName"
+            android:hint="@string/nombre_consulta" />
+
+        <Spinner
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/spinnerAtencion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:entries="@array/atencion_array"
+            android:prompt="@string/spn_tipoAtencion"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="178dp" />
+
+        <EditText
+            android:id="@+id/vetObservacion"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+
+            android:hint="@string/Observaciones"
+            android:scrollbars="vertical"/>
+
+        <Button
+            android:id="@+id/btn_agregarVet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_agregarvet"
+            />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

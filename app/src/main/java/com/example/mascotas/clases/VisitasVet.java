@@ -2,12 +2,12 @@ package com.example.mascotas.clases;
 
 public class VisitasVet {
 
-    private String fecha, descripcion, nombreVet, ubicacion, tipoAtencion;
-    public VisitasVet(String fecha, String descripcion, String nombreVet, String ubicacion, String tipoAtencion) {
+    private String fecha, descripcion, nombreVet, tipoAtencion;
+    public VisitasVet(String fecha, String descripcion, String nombreVet, String tipoAtencion) {
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.nombreVet = nombreVet;
-        this.ubicacion = ubicacion;
+
         this.tipoAtencion = tipoAtencion;
     }
 
@@ -33,14 +33,6 @@ public class VisitasVet {
 
     public void setNombreVet(String nombreVet) {
         this.nombreVet = nombreVet;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
     }
 
     public String getTipoAtencion() {
