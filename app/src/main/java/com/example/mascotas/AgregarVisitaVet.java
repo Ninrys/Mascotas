@@ -12,14 +12,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -27,14 +32,17 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference spinnerRef;
     EditText nombreVet, sucursal, fechaVisita, observacion;
     Spinner spnNombreMascota, spnTipoAtencion;
-    ArrayList spinnerList, idList;
+    ArrayList spinnerLista, idLista;
     ArrayAdapter<String> adapter;
+    Button btnAgregarVet;
 
 
     //menu
@@ -88,11 +96,12 @@ public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDia
         spnNombreMascota = findViewById(R.id.spinnerMascotvET);
         spnTipoAtencion = findViewById(R.id.spinnerAtencion);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        btnAgregarVet = findViewById(R.id.btn_agregarVet);
 
         spinnerRef = db.collection("usuarios").document(uid).collection("mascotas");
-        idList = new ArrayList<>();
-        spinnerList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(AgregarVisitaVet.this, android.R.layout.simple_spinner_item, spinnerList);
+        idLista = new ArrayList<String>();
+        spinnerLista = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(AgregarVisitaVet.this, android.R.layout.simple_spinner_item, spinnerLista);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnNombreMascota.setAdapter(adapter);
         //rellenar
@@ -104,9 +113,9 @@ public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDia
 
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String nombremascota = document.getString("nombre");
-                        String iudmascota = document.getId();
-                        spinnerList.add(nombremascota);
-                        idList.add(iudmascota);
+                        String idmascota = document.getId();
+                        spinnerLista.add(nombremascota);
+                        idLista.add(idmascota);
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -120,8 +129,46 @@ public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDia
                 datepicker.show(getSupportFragmentManager(), "date picker");
             }
         });
+        btnAgregarVet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreVeterinario = nombreVet.getText().toString();
+                String fecha = fechaVisita.getText().toString();
+                String lugar = sucursal.getText().toString();
+                String observacionVet= observacion.getText().toString();
+                String mascota= spnNombreMascota.getSelectedItem().toString();
+                int i= spnNombreMascota.getSelectedItemPosition();
+                String idPet= idLista.get(i).toString();
+                String tipoConsulta = spnTipoAtencion.getSelectedItem().toString();
 
+                if(nombreVeterinario.isEmpty()||fecha.isEmpty()||lugar.isEmpty()||mascota.isEmpty()||tipoConsulta.isEmpty()){
+                    Toast.makeText(AgregarVisitaVet.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
+                }else{
+                    Map<String, Object> docData = new HashMap<>();
+                    docData.put("Nombre_Vet", nombreVeterinario);
+                    docData.put("fecha_atencion", fecha);
+                    docData.put("nombre_Consulta", lugar);
+                    docData.put("Observacion", observacionVet);
+                    docData.put("Tipo_Consulta", tipoConsulta);
+                    db.collection("usuarios").document(uid).collection("mascotas").document(idPet)
+                            .collection("Visitas").add(docData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(AgregarVisitaVet.this, "Agregado correctamente", Toast.LENGTH_SHORT).show();
 
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(AgregarVisitaVet.this, "Error al registrar", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
 
     }
 
