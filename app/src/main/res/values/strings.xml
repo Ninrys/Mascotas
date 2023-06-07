@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Mascotas</string>
+    <string name="login_name">Sign in</string>
+    <string name="register_name">Sign up</string>
+    <string name="wlc_sign_in">Welcome back, sign in</string>
+    <string name="wlc_sign_up">Sign up to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="already_member">Already have an account, Sign in</string>
+    <string name="dont_have">Don\'t have an account, Sign up</string>
+    <string name="username">Username</string>
+    <string name="registrate">Regístrate</string>
+    <string name="Agregaunamascota">Agrega una Mascota!</string>
+    <string name="spn_title">Elige Especie</string>
+    <string name="nombreMascota">Nombre de la Mascota</string>
+    <string name="raza">Raza</string>
+    <string name="nacimiento">Año de nacimiento</string>
+    <string name="comida">Alimento mascota</string>
+    <string name="btn_agregar">Agregar Mascota</string>
+    <string name="Agregar_Vacunas">Agrega Vacunas</string>
+    <string name="nombre_vacuna">Nombre de la Vacuna</string>
+    <string name="Fecha_vacunacion">Fecha de Vacunacion</string>
+    <string-array name="especies_array">
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Pájaro</item>
+        <item>Otros</item>
+
+    </string-array>
+
+</resources>

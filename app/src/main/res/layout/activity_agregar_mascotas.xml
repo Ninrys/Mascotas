@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".AgregarMascotas">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Agregaunamascota"
+        android:textSize="30dp"
+        android:padding="20dp"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="36dp"
+        />
+
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/addMascotaName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="10dp"
+        android:inputType="textPersonName"
+        android:hint="@string/nombreMascota"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="103dp"
+        android:layout_gravity="center"/>
+    <Spinner
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/spinnerEspecie"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:entries="@array/especies_array"
+        android:prompt="@string/spn_title"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/addRazaMascota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:hint="@string/raza"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="225dp" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/addbirthyear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="10dp"
+        android:hint="@string/nacimiento"
+        android:inputType="number"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="289dp" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/addAlimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:inputType="textPersonName"
+        android:hint="@string/comida"
+        tools:layout_editor_absoluteX="116dp"
+        tools:layout_editor_absoluteY="349dp" />
+
+    <Button
+        android:id="@+id/bt_addMascota"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_agregar"
+
+        />
+
+</LinearLayout>

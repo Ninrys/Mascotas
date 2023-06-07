@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<item android:title="Inicio"
+      android:id="@+id/Inicio"
+     app:showAsAction="ifRoom"
+  android:icon="@drawable/ic_home"   />
+
+ <item android:id="@+id/addMascota"
+    android:title="Agregar Mascota"
+    app:showAsAction="never"
+     android:icon="@drawable/ic_mascota"
+     />
+ <item android:id="@+id/addVacuna"
+     android:title="Agregar Vacuna"
+     app:showAsAction="never"
+     android:icon="@drawable/ic_agregar_vacuna"
+     />
+ <item android:id="@+id/addVisita"
+     android:title="Agregar Visita Vet"
+     app:showAsAction="never"
+     android:icon="@drawable/ic_agregar_visita"
+     />
+ <item android:id="@+id/logOut"
+     android:title="Cerrar Sesión"
+     app:showAsAction="never">
+
+ </item>
+</menu>
