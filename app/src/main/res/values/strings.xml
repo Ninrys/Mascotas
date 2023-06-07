@@ -28,6 +28,9 @@
     <string name="Fecha_visita">Fecha Visita Veterinaria</string>
     <string name="Agregar_visita">Agregar Visita Veterinaria</string>
     <string name="btn_agregarvet">Agregar Visita</string>
+    <string name="quien">¿Quién?</string>
+    <string name="donde">¿Dónde?</string>
+    <string name="cuando">¿Cuándo?</string>
     <string-array name="especies_array">
         <item>Perro</item>
         <item>Gato</item>

@@ -62,6 +62,12 @@ Button botonAgregar;
 
                 return true;
 
+            case R.id.Inicio:
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
+                finish();
+                return true;
+
             case R.id.logOut:
                 FirebaseAuth.getInstance().signOut();
                 Intent intent2 = new Intent(this, Login.class);

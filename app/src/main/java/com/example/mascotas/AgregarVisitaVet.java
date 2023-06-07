@@ -63,6 +63,13 @@ public class AgregarVisitaVet extends AppCompatActivity implements DatePickerDia
                 startActivity(intent);
                 // finish();
                 return true;
+
+            case R.id.Inicio:
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
+                finish();
+                return true;
+
             case R.id.addVacuna:
 
                 Intent intent1 = new Intent(this, AgregarVacunas.class);

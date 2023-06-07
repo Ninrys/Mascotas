@@ -6,6 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TableLayout
+        android:layout_width="409dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TableRow android:background="@color/purple_700">
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quien"
+             android:textColor="@color/white"
+                android:padding="5sp"
+                android:textSize="15sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donde"
+                android:textColor="@color/white"
+                android:padding="5sp"
+                android:textSize="15sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cuando"
+                android:textColor="@color/white"
+                android:padding="5sp"
+                android:textSize="15sp"
+                android:layout_weight="4"
+                android:gravity="center_horizontal"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     "
+                android:textColor="@color/white"
+                android:padding="5sp"
+                android:textSize="15sp"
+                android:layout_weight="3"
+                android:gravity="center_horizontal">
+
+
+            </TextView>
+        </TableRow>
+
+
+
+    </TableLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -15,14 +78,10 @@
         tools:layout_editor_absoluteY="43dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="150dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="63dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="409dp"
         android:layout_height="516dp"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="214dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

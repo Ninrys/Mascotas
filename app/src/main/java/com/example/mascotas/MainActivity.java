@@ -10,12 +10,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DatabaseReference visitasdb;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(this, Login.class);
                 startActivity(intent2);
                 finish();
+
+            case R.id.Inicio:
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

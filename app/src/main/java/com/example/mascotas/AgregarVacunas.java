@@ -87,6 +87,14 @@ public class AgregarVacunas extends AppCompatActivity implements DatePickerDialo
                 Intent intent2 = new Intent(this, Login.class);
                 startActivity(intent2);
                 finish();
+
+            case R.id.Inicio:
+                Intent intent4 = new Intent(this, MainActivity.class);
+                startActivity(intent4);
+                finish();
+                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }
